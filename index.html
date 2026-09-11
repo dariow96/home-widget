@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Landing</title>
+
+
+    <!-- =========================================================
+         STYLES
+    ========================================================== -->
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+
+            background: #000;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =====================================================
+           LANDING
+        ====================================================== */
+
+        .landing-widget {
+            position: relative;
+
+            width: 100vw;
+            height: 100vh;
+            height: 100svh;
+
+            overflow: hidden;
+
+            background: #000;
+        }
+
+
+        /* =====================================================
+           BACKGROUND VIDEO
+        ====================================================== */
+
+        .landing-video {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: center center;
+
+            z-index: 0;
+        }
+
+
+        /* =====================================================
+           VIDEO OVERLAY
+           
+           Change the 0.15 value if you want:
+           
+           darker:
+           rgba(0, 0, 0, 0.30)
+
+           lighter:
+           rgba(0, 0, 0, 0.05)
+
+           completely transparent:
+           rgba(0, 0, 0, 0)
+        ====================================================== */
+
+        .landing-overlay {
+            position: absolute;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.15);
+
+            z-index: 1;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ====================================================== */
+
+        .landing-content {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            z-index: 2;
+        }
+
+
+        /* =====================================================
+           TITLE
+           
+           BASE CARD FONT SIZE:
+           Change this value if you want to establish
+           another base size.
+
+           LANDING TITLE:
+           2.5 × this size.
+        ====================================================== */
+
+        .landing-title {
+    font-family: sans-serif;
+    font-size: 112.5px;
+    font-weight: bold;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 45px 0;
+        }
+
+
+        /* =====================================================
+           OVAL LINK
+        ====================================================== */
+
+        .enlace-ovalo {
+            position: absolute;
+
+            left: 50%;
+
+            /*
+             * Distance below the title.
+             * The oval is positioned relative to the
+             * center of the screen.
+             */
+            top: calc(50% + 65px);
+
+            transform: translateX(-50%);
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            text-decoration: none;
+
+            z-index: 10;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           OVAL
+        ====================================================== */
+
+        .ovalo {
+            position: relative;
+
+            width: 30px;
+            height: 65px;
+
+            background-color: transparent;
+
+            border: 5px solid #ffffff;
+
+            border-radius: 30%;
+
+            overflow: hidden;
+
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           HORIZONTAL AXIS
+        ====================================================== */
+
+        .eje-horizontal {
+            position: absolute;
+
+            top: 50%;
+            left: 0;
+
+            width: 100%;
+            height: 1px;
+
+            transform: translateY(-50%);
+
+            border-top:
+                1px dashed
+                rgba(255, 255, 255, 0.4);
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           VERTICAL AXIS
+        ====================================================== */
+
+        .eje-vertical {
+            position: absolute;
+
+            left: 50%;
+            top: 0;
+
+            width: 1px;
+            height: 100%;
+
+            transform: translateX(-50%);
+
+            border-left:
+                1px dashed
+                rgba(255, 255, 255, 0.4);
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           MOVING DOT
+        ====================================================== */
+
+        .punto-central {
+            position: absolute;
+
+            top: 25%;
+            left: 50%;
+
+            width: 12px;
+            height: 12px;
+
+            background-color: #ffffff;
+
+            border-radius: 50%;
+
+            animation:
+                moverAbajo
+                1s
+                ease-in-out
+                infinite;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           OVAL ANIMATION
+        ====================================================== */
+
+        @keyframes moverAbajo {
+
+            0% {
+                transform:
+                    translate(-50%, -50%);
+
+                opacity: 1;
+            }
+
+            70% {
+                transform:
+                    translate(-50%, 15px);
+
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translate(-50%, 25px);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =====================================================
+           CUSTOM CURSOR
+           
+           IMPORTANT:
+           left and top intentionally DO NOT have
+           !important.
+
+           This allows JavaScript to move the cursor.
+        ====================================================== */
+
+        @media (min-width: 769px) {
+
+            html,
+            body,
+            html *,
+            body * {
+                cursor: none !important;
+            }
+
+
+            #dynamic-cursor {
+
+                position: fixed !important;
+
+                left: 0;
+                top: 0;
+
+                width: 40px !important;
+                height: 40px !important;
+
+                margin: 0 !important;
+                padding: 0 !important;
+
+                pointer-events: none !important;
+
+                z-index: 999999 !important;
+
+                font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif !important;
+
+                font-size: 2.5rem !important;
+
+                font-weight: 900 !important;
+
+                line-height: 40px !important;
+
+                text-align: center !important;
+
+                color: #ffffff !important;
+
+                mix-blend-mode: difference !important;
+
+                transform:
+                    translate(-50%, -50%)
+                    rotate(-135deg);
+
+                transform-origin: center center !important;
+
+                opacity: 1;
+
+                display: block !important;
+
+                transition:
+                    transform 0.12s ease,
+                    opacity 0.12s ease !important;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 768px) {
+
+            html,
+            body,
+            html *,
+            body * {
+                cursor: auto !important;
+            }
+
+
+            #dynamic-cursor {
+                display: none !important;
+            }
+
+
+            .landing-widget {
+                width: 100%;
+                height: 100svh;
+            }
+
+
+            .landing-title {
+                font-size: 10vw;
+
+                max-width: 90vw;
+
+                line-height: 0.95;
+
+                margin-bottom: 40px;
+            }
+
+
+            .enlace-ovalo {
+                top: calc(50% + 60px);
+            }
+        }
+
+
+        /* =====================================================
+           VERY SMALL SCREENS
+        ====================================================== */
+
+        @media (max-width: 480px) {
+
+            .landing-title {
+                font-size: 11vw;
+            }
+
+            .enlace-ovalo {
+                top: calc(50% + 55px);
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         LANDING WIDGET
+    ====================================================== -->
+
+    <section class="landing-widget">
+
+
+        <!-- =================================================
+             BACKGROUND VIDEO
+
+             REPLACE THE URL BELOW
+        ================================================== -->
+
+        <video
+            class="landing-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+        >
+
+            <source
+                src="YOUR_VIDEO_URL_HERE.mp4"
+                type="video/mp4"
+            >
+
+        </video>
+
+
+        <!-- =================================================
+             OVERLAY
+        ================================================== -->
+
+        <div class="landing-overlay"></div>
+
+
+        <!-- =================================================
+             CENTER CONTENT
+        ================================================== -->
+
+        <div class="landing-content">
+
+
+            <!-- =============================================
+                 TITLE
+
+                 CHANGE THIS TEXT
+            ============================================== -->
+
+            <h1 class="landing-title">
+                YOUR TITLE HERE
+            </h1>
+
+
+        </div>
+
+
+        <!-- =================================================
+             OVAL NAVIGATION
+        ================================================== -->
+
+        <a
+            href="https://www.r25media.com/home#case-study"
+            class="enlace-ovalo"
+            aria-label="Go to case studies"
+        >
+
+            <div class="ovalo">
+
+                <!-- Horizontal symmetry axis -->
+                <div class="eje eje-horizontal"></div>
+
+                <!-- Vertical symmetry axis -->
+                <div class="eje eje-vertical"></div>
+
+                <!-- Moving white dot -->
+                <div class="punto-central"></div>
+
+            </div>
+
+        </a>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         CUSTOM CURSOR
+    ====================================================== -->
+
+    <div id="dynamic-cursor">&gt;</div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            () => {
+
+                const customCursor =
+                    document.getElementById(
+                        'dynamic-cursor'
+                    );
+
+
+                /*
+                 * CUSTOM CURSOR
+                 *
+                 * Desktop only.
+                 */
+
+                if (customCursor) {
+
+                    window.addEventListener(
+                        'pointermove',
+                        (e) => {
+
+                            /*
+                             * Move cursor to mouse position.
+                             *
+                             * clientX/clientY are correct because
+                             * the cursor uses position: fixed.
+                             */
+
+                            customCursor.style.left =
+                                `${e.clientX}px`;
+
+                            customCursor.style.top =
+                                `${e.clientY}px`;
+
+
+                            /*
+                             * Hide custom cursor when hovering
+                             * over something clickable.
+                             */
+
+                            const clickable =
+                                e.target.closest(
+                                    'a, button, input, select, textarea, label, [role="button"]'
+                                );
+
+
+                            if (clickable) {
+
+                                customCursor.style.opacity =
+                                    '0';
+
+                                return;
+                            }
+
+
+                            /*
+                             * Normal landing-page state:
+                             *
+                             * White ">" rotated -135 degrees.
+                             */
+
+                            customCursor.textContent =
+                                '>';
+
+                            customCursor.style.transform =
+                                'translate(-50%, -50%) rotate(-135deg)';
+
+                            customCursor.style.opacity =
+                                '1';
+
+                        }
+                    );
+
+
+                    /*
+                     * Hide cursor when mouse leaves
+                     * the browser/page area.
+                     */
+
+                    document.documentElement.addEventListener(
+                        'mouseleave',
+                        () => {
+
+                            customCursor.style.opacity =
+                                '0';
+
+                        }
+                    );
+
+
+                    /*
+                     * Show cursor again when entering
+                     * the page.
+                     */
+
+                    document.documentElement.addEventListener(
+                        'mouseenter',
+                        () => {
+
+                            customCursor.style.opacity =
+                                '1';
+
+                        }
+                    );
+
+                }
+
+
+                /*
+                 * BACKGROUND VIDEO
+                 *
+                 * Some browsers may block autoplay until
+                 * playback is explicitly requested.
+                 */
+
+                const video =
+                    document.querySelector(
+                        '.landing-video'
+                    );
+
+
+                if (video) {
+
+                    video.muted = true;
+
+                    const playPromise =
+                        video.play();
+
+
+                    if (
+                        playPromise !== undefined
+                    ) {
+
+                        playPromise.catch(
+                            () => {
+
+                                /*
+                                 * Autoplay was blocked.
+                                 * The video remains available,
+                                 * but the browser requires user
+                                 * interaction before playback.
+                                 */
+
+                            }
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+</html>

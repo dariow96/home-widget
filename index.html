@@ -370,6 +370,29 @@
 
         @media (max-width: 768px) {
 
+            .landing-header {
+                height: 76px;
+                padding: 18px 20px;
+            }
+
+            .logo-slot {
+                width: 140px;
+            }
+
+            .menu-panel {
+                width: 82%;
+                min-width: 0;
+                padding: 90px 28px 30px;
+            }
+
+            .menu-links {
+                gap: 22px;
+            }
+
+            .menu-links a {
+                font-size: 18px;
+            }
+
             html,
             body,
             html *,
@@ -435,6 +458,59 @@
 
     <section class="landing-widget">
 
+        <!-- =================================================
+             HEADER
+             Replace the logo-slot contents with your logo.
+             ================================================== -->
+
+        <header class="landing-header">
+            <div class="logo-slot" aria-label="Logo">
+                <!-- LOGO SLOT -->
+            </div>
+
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+                aria-controls="site-menu"
+            >
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+
+        <!-- =================================================
+             GLASS MENU
+             ================================================== -->
+
+        <div class="menu-scrim" id="menu-scrim"></div>
+
+        <aside class="menu-panel" id="site-menu" aria-hidden="true">
+            <nav class="menu-links" aria-label="Main navigation">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">Faq</a>
+                <a href="#more">More</a>
+            </nav>
+
+            <div class="menu-social" aria-label="Social links">
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <circle cx="17.6" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+                    </svg>
+                </a>
+
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg class="linkedin-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5.2 8.4H2.8V21h2.4V8.4ZM4 3a1.45 1.45 0 1 0 0 2.9A1.45 1.45 0 0 0 4 3Zm4.3 5.4H6V21h2.3v-6.6c0-1.8.35-3.5 2.55-3.5 2.17 0 2.2 2.02 2.2 3.62V21H15.4v-7.25c0-3.56-.77-6.25-4.5-6.25-1.42 0-2.37.78-2.76 1.52h-.03V8.4ZM17.6 8.4h-2.3V21h2.3v-6.24c0-1.65.31-3.86 2.8-3.86 2.45 0 2.47 2.44 2.47 3.98V21H23v-7.03c0-3.46-.74-6.47-4.73-6.47-1.6 0-2.67.88-3.1 1.71h-.03V8.4h-2.54Z"></path>
+                    </svg>
+                </a>
+            </div>
+        </aside>
 
         <!-- =================================================
              BACKGROUND VIDEO
@@ -628,6 +704,47 @@
                     );
 
                 }
+
+                /*
+                 * GLASS MENU
+                 */
+
+                const menuToggle = document.querySelector('.menu-toggle');
+                const menuPanel = document.getElementById('site-menu');
+                const menuScrim = document.getElementById('menu-scrim');
+
+                function setMenu(open) {
+                    if (!menuToggle || !menuPanel || !menuScrim) return;
+
+                    menuToggle.classList.toggle('is-open', open);
+                    menuPanel.classList.toggle('is-open', open);
+                    menuScrim.classList.toggle('is-open', open);
+
+                    menuToggle.setAttribute('aria-expanded', String(open));
+                    menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+                    menuPanel.setAttribute('aria-hidden', String(!open));
+                    document.body.classList.toggle('menu-open', open);
+                }
+
+                if (menuToggle) {
+                    menuToggle.addEventListener('click', () => {
+                        setMenu(!menuPanel.classList.contains('is-open'));
+                    });
+                }
+
+                if (menuScrim) {
+                    menuScrim.addEventListener('click', () => setMenu(false));
+                }
+
+                if (menuPanel) {
+                    menuPanel.querySelectorAll('a').forEach((link) => {
+                        link.addEventListener('click', () => setMenu(false));
+                    });
+                }
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') setMenu(false);
+                });
 
                 /*
                  * BACKGROUND VIDEO

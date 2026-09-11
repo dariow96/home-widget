@@ -64,21 +64,31 @@
            BACKGROUND VIDEO
         ====================================================== */
 
-        .landing-video {
-            position: absolute;
+.landing-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
 
-            top: 0;
-            left: 0;
+.landing-video iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 
-            width: 100%;
-            height: 100%;
+    width: 100vw;
+    height: 56.25vw;
 
-            object-fit: cover;
-            object-position: center center;
+    min-width: 177.78vh;
+    min-height: 100vh;
 
-            z-index: 0;
-        }
+    transform: translate(-50%, -50%);
 
+    border: 0;
+    pointer-events: none;
+}
 
         /* =====================================================
            VIDEO OVERLAY
@@ -166,7 +176,7 @@
              * The oval is positioned relative to the
              * center of the screen.
              */
-            top: calc(50% + 65px);
+            top: calc(50% + 300px);
 
             transform: translateX(-50%);
 
@@ -456,22 +466,14 @@
              REPLACE THE URL BELOW
         ================================================== -->
 
-        <video
-            class="landing-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-        >
-
-            <source
-                src="https://vimeo.com/1221405131?share=copy&fl=sv&fe=ci"
-                type="video/mp4"
-            >
-
-        </video>
-
+<div class="landing-video">
+    <iframe
+        src="https://player.vimeo.com/video/1221405131?autoplay=1&muted=1&loop=1&background=1&autopause=0"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
 
         <!-- =================================================
              OVERLAY
@@ -494,7 +496,7 @@
             ============================================== -->
 
             <h1 class="landing-title">
-                ‍ ‍BESPOKE VISUALS FOR HIGH-VALUE INDUSTRIES
+                ‍ ‍BESPOKE VISUALS<br>FOR<br> HIGH-VALUE INDUSTRIES
             </h1>
 
 

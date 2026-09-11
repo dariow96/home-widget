@@ -358,8 +358,8 @@
                 display: block !important;
 
                 transition:
-                    transform 0.12s ease,
-                    opacity 0.12s ease !important;
+                    transform 0.10s ease-out,
+                    opacity 0.10s ease-out !important;
             }
         }
 
@@ -568,12 +568,14 @@
 
                             if (clickable) {
 
-                                customCursor.style.opacity =
-                                    '0';
+                                customCursor.style.transform =
+                                'translate(-50%, -50%) rotate(45deg) scale(0.15)';
 
-                                return;
-                            }
+                                  customCursor.style.opacity =
+                                  '0';
 
+                                  return;
+}
 
                             /*
                              * Normal landing-page state:
@@ -585,7 +587,7 @@
                                 '>';
 
                             customCursor.style.transform =
-                                'translate(-50%, -50%) rotate(-135deg)';
+                                 'translate(-50%, -50%) rotate(-135deg) scale(1)';
 
                             customCursor.style.opacity =
                                 '1';

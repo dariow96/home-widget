@@ -242,52 +242,6 @@
 
 
         /* =====================================================
-           HORIZONTAL AXIS
-        ====================================================== */
-
-        .eje-horizontal {
-            position: absolute;
-
-            top: 50%;
-            left: 0;
-
-            width: 100%;
-            height: 0px;
-
-            transform: translateY(-50%);
-
-            border-top:
-                1px dashed
-                rgba(255, 255, 255, 0.4);
-
-            pointer-events: none;
-        }
-
-
-        /* =====================================================
-           VERTICAL AXIS
-        ====================================================== */
-
-        .eje-vertical {
-            position: absolute;
-
-            left: 50%;
-            top: 0;
-
-            width: 0px;
-            height: 100%;
-
-            transform: translateX(-50%);
-
-            border-left:
-                1px dashed
-                rgba(255, 255, 255, 0.4);
-
-            pointer-events: none;
-        }
-
-
-        /* =====================================================
            MOVING DOT
         ====================================================== */
 
@@ -542,12 +496,6 @@
         >
 
             <div class="ovalo">
-
-                <!-- Horizontal symmetry axis -->
-                <div class="eje eje-horizontal"></div>
-
-                <!-- Vertical symmetry axis -->
-                <div class="eje eje-vertical"></div>
 
                 <!-- Moving white dot -->
                 <div class="punto-central"></div>

@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Landing</title>
+
+     <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+
+    <!-- =========================================================
+         STYLES11
+    ========================================================== -->
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+
+            background: transparent;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =====================================================
+           LANDING
+        ====================================================== */
+
+        .landing-widget {
+            position: relative;
+
+            width: 100vw;
+            height: 100%;
+            height: 100vh;
+
+            overflow: hidden;
+
+            background: #000;
+        }
+
+
+        /* =====================================================
+           BACKGROUND VIDEO
+        ====================================================== */
+
+.landing-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.landing-video iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 100vw;
+    height: 56.25vw;
+
+    min-width: 177.78vh;
+    min-height: 100vh;
+
+    transform: translate(-50%, -50%);
+
+    border: 0;
+    pointer-events: none;
+}
+
+        /* =====================================================
+           VIDEO OVERLAY
+           
+           Change the 0.15 value if you want:
+           
+           darker:
+           rgba(0, 0, 0, 0.30)
+
+           lighter:
+           rgba(0, 0, 0, 0.05)
+
+           completely transparent:
+           rgba(0, 0, 0, 0)
+        ====================================================== */
+
+        .landing-overlay {
+            position: absolute;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.15);
+
+            z-index: 1;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ====================================================== */
+
+        .landing-content {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            z-index: 2;
+        }
+
+
+        /* =====================================================
+           TITLE
+           
+           BASE CARD FONT SIZE:
+           Change this value if you want to establish
+           another base size.
+
+           LANDING TITLE:
+           2.5 × this size.
+        ====================================================== */
+
+        .landing-title {
+            display: block;
+            font-family: 'Poppins', sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: clamp(50px, 6vw, 140px);
+            line-height: 1.1;
+            letter-spacing: 0.0em;
+            color: #ffffff;
+            text-align: center;
+            text-transform: uppercase;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            background: linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #ffffff 42%,
+            #d8d8d8 100%
+    );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 0.5px rgba(255,255,255,0.45);
+            filter:
+                drop-shadow(0 4px 6px rgba(0,0,0,0.30))
+                drop-shadow(0 14px 22px rgba(0,0,0,0.35))
+                drop-shadow(0 28px 50px rgba(0,0,0,0.25));
+        }
+
+
+        /* =====================================================
+           OVAL LINK
+        ====================================================== */
+
+        .enlace-ovalo {
+            position: absolute;
+
+            left: 50%;
+
+            /*
+             * Distance below the title.
+             * The oval is positioned relative to the
+             * center of the screen.
+             */
+            top: calc(50% + 200px);
+
+            transform: translateX(-50%);
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            text-decoration: none;
+
+            z-index: 10;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           OVAL
+        ====================================================== */
+
+        .ovalo {
+            position: relative;
+
+            width: 30px;
+            height: 65px;
+
+            background-color: transparent;
+
+            border: 5px solid #ffffff;
+
+            border-radius: 30%;
+
+            overflow: hidden;
+
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           MOVING DOT
+        ====================================================== */
+
+.punto-central {
+    position: absolute;
+
+    top: 25%;
+    left: 50%;
+
+    width: 20px;
+    height: 20px;
+
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 20px;
+
+    text-align: center;
+
+    transform: translate(-50%, -50%) rotate(90deg);
+
+    animation: moverAbajo 1s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+        /* =====================================================
+           OVAL ANIMATION
+        ====================================================== */
+
+@keyframes moverAbajo {
+    0% {
+        transform: translate(-50%, -50%) rotate(90deg);
+        opacity: 1;
+    }
+
+    70% {
+        transform: translate(-50%, 15px) rotate(90deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, 25px) rotate(90deg);
+        opacity: 0;
+    }
+}
+
+
+        /* =====================================================
+           CUSTOM CURSOR
+           
+           IMPORTANT:
+           left and top intentionally DO NOT have
+           !important.
+
+           This allows JavaScript to move the cursor.
+        ====================================================== */
+
+        @media (min-width: 769px) {
+
+            html,
+            body,
+            html *,
+            body * {
+                cursor: none !important;
+            }
+
+
+            #dynamic-cursor {
+
+                position: fixed !important;
+
+                left: 0;
+                top: 0;
+
+                width: 40px !important;
+                height: 40px !important;
+
+                margin: 0 !important;
+                padding: 0 !important;
+
+                pointer-events: none !important;
+
+                z-index: 999999 !important;
+
+                font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif !important;
+
+                font-size: 2.5rem !important;
+
+                font-weight: 900 !important;
+
+                line-height: 40px !important;
+
+                text-align: center !important;
+
+                color: #ffffff !important;
+
+                mix-blend-mode: difference !important;
+
+                transform:
+                    translate(-50%, -50%)
+                    rotate(-135deg);
+
+                transform-origin: center center !important;
+
+                opacity: 1;
+
+                display: block !important;
+
+                transition:
+                    transform 0.22s ease-out,
+                    opacity 0.22s ease-out !important;
+            }
+        }
+
+
+        /* =====================================================
+           LOGO PLACEHOLDER
+        ====================================================== */
+
+.logo-placeholder {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    width: 300px;
+    height: auto;
+    z-index: 20;
+    border: none;
+}
+
+.logo-placeholder a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.logo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+        /* =====================================================
+   GLASS MENU WINDOW
+====================================================== */
+
+.menu-toggle {
+    position: absolute;
+
+    top: 45px;
+    right: 55px;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 7px;
+
+    background: transparent;
+    border: none;
+
+    z-index: 100;
+
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+
+    width: 35px;
+    height: 3px;
+
+    background: #ffffff;
+
+    transition:
+        transform 0.3s ease,
+        width 0.3s ease;
+}
+
+.menu-toggle span:nth-child(2) {
+    width: 22px;
+}
+
+
+/* -----------------------------------------------------
+   OPEN MENU BUTTON → X
+------------------------------------------------------ */
+
+.menu-toggle.is-open {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* -----------------------------------------------------
+   GLASS WINDOW
+------------------------------------------------------ */
+
+.menu-window {
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 30%;
+    height: 100%;
+
+    z-index: 90;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 90px 25px 80px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border-left:
+        1px solid rgba(255, 255, 255, 0.25);
+
+    box-shadow:
+        -15px 0 50px rgba(0, 0, 0, 0.20);
+
+    backdrop-filter:
+        blur(25px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(25px)
+        saturate(130%);
+
+    transform:
+        translateX(100%);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        transform 0.45s cubic-bezier(.22,.61,.36,1),
+        opacity 0.3s ease,
+        visibility 0s linear 0.45s;
+}
+
+
+/* -----------------------------------------------------
+   OPEN STATE
+------------------------------------------------------ */
+
+.menu-window.is-open {
+
+    transform: translateX(0);
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transition:
+        transform 0.45s cubic-bezier(.22,.61,.36,1),
+        opacity 0.3s ease,
+        visibility 0s linear 0s;
+}
+
+
+/* -----------------------------------------------------
+   NAVIGATION
+------------------------------------------------------ */
+
+.menu-navigation {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 24px;
+
+    width: 100%;
+}
+
+
+.menu-navigation a {
+    position: relative;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #ffffff 42%,
+        #d8d8d8 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    -webkit-text-stroke: 0.3px rgba(255,255,255,0.45);
+
+    filter:
+        drop-shadow(0 2px 4px rgba(0,0,0,0.30))
+        drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.menu-navigation a:hover {
+
+    opacity: 0.65;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* -----------------------------------------------------
+   SOCIAL LINKS
+------------------------------------------------------ */
+
+.menu-social {
+
+    position: absolute;
+
+    bottom: 28px;
+
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.menu-social a {
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.menu-social a:hover {
+
+    opacity: 0.65;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* -----------------------------------------------------
+   SOCIAL ICONS
+------------------------------------------------------ */
+
+.menu-social svg {
+
+    width: 26px;
+    height: 26px;
+
+    fill: none;
+
+    stroke:
+        currentColor;
+
+    stroke-width: 1.7;
+}
+ .menu-social a:last-child svg {
+    fill: currentColor;
+    stroke: none;
+    stroke-width: 0;
+}
+
+
+/* -----------------------------------------------------
+   CLOSE BUTTON
+------------------------------------------------------ */
+
+.menu-close {
+
+    position: absolute;
+
+    top: 32px;
+    right: 45px;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    border: none;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 36px;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 101;
+
+    padding: 0;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.menu-close:hover {
+
+    opacity: 0.65;
+
+    transform:
+        rotate(90deg);
+}
+
+
+/* -----------------------------------------------------
+   MOBILE
+------------------------------------------------------ */
+
+@media (max-width: 768px) {
+
+    .menu-toggle {
+
+        top: 18px;
+        right: 20px;
+    }
+
+
+    .menu-window {
+
+        width: 82%;
+
+        padding:
+            80px
+            25px
+            70px;
+    }
+
+
+    .menu-navigation {
+
+        gap: 22px;
+    }
+
+
+    .menu-navigation a {
+
+        font-size: 18px;
+    }
+
+
+    .menu-close {
+
+        top: 18px;
+        right: 20px;
+    }
+
+}
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 768px) {
+
+            .logo-placeholder {
+                top: 18px;
+                left: 20px;
+                width: 110px;
+                height: 38px;
+                font-size: 10px;
+            }
+
+
+            html,
+            body,
+            html *,
+            body * {
+                cursor: auto !important;
+            }
+
+
+            #dynamic-cursor {
+                display: none !important;
+            }
+
+
+            .landing-widget {
+                width: 100%;
+                height: 100svh;
+            }
+
+
+            .landing-title {
+                font-size: 10vw;
+
+                max-width: 90vw;
+
+                line-height: 1.08;
+
+                margin-bottom: 40px;
+            }
+
+
+            .enlace-ovalo {
+                top: calc(50% + 60px);
+            }
+        }
+
+
+        /* =====================================================
+           VERY SMALL SCREENS
+        ====================================================== */
+
+        @media (max-width: 480px) {
+
+            .landing-title {
+                font-size: 11vw;
+            }
+
+            .enlace-ovalo {
+                top: calc(50% + 55px);
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         LANDING WIDGET
+    ====================================================== -->
+
+    <section class="landing-widget">
+
+        <!-- =================================================
+             LOGO PLACEHOLDER
+             Replace this block with your real logo later.
+             ================================================== -->
+        <div class="logo-placeholder">
+            <a href="https://www.r25media.com/" aria-label="Home">
+            <img src="https://www.r25media.com/s/LogoGIF-1.gif" alt="Logo">
+            </a>
+        </div>
+
+<!-- =================================================
+     MENU BUTTON
+================================================== -->
+
+<button
+    class="menu-toggle"
+    type="button"
+    aria-label="Open menu"
+    aria-expanded="false"
+>
+    <span></span>
+    <span></span>
+</button>
+
+
+<!-- =================================================
+     GLASS MENU WINDOW
+================================================== -->
+
+<aside
+    class="menu-window"
+    aria-hidden="true"
+>
+
+    <!-- CLOSE -->
+    <button
+        class="menu-close"
+        type="button"
+        aria-label="Close menu"
+    >
+        ×
+    </button>
+
+
+    <!-- NAVIGATION -->
+    <nav
+        class="menu-navigation"
+        aria-label="Main navigation"
+    >
+
+        <a href="/work">
+            Work
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+        <a href="/pricing">
+            Pricing
+        </a>
+
+        <a href="/faq">
+            Faq
+        </a>
+
+        <a href="/more">
+            More
+        </a>
+
+    </nav>
+
+
+    <!-- SOCIAL -->
+    <div class="menu-social">
+
+        <!-- INSTAGRAM -->
+        <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+                <rect
+                    x="3.5"
+                    y="3.5"
+                    width="17"
+                    height="17"
+                    rx="5"
+                />
+
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="4"
+                />
+
+                <circle
+                    cx="17.6"
+                    cy="6.5"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                />
+
+            </svg>
+
+        </a>
+
+
+        <!-- LINKEDIN -->
+        <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+        >
+
+           <svg
+    viewBox="0 0 256 256"
+    aria-hidden="true"
+>
+    <path
+        fill="currentColor"
+        d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453"
+    />
+</svg>
+
+        </a>
+
+    </div>
+
+</aside>
+
+        <!-- =================================================
+             BACKGROUND VIDEO
+
+             REPLACE THE URL BELOW
+        ================================================== -->
+
+<div class="landing-video">
+    <iframe
+        src="https://player.vimeo.com/video/1225816041?autoplay=1&muted=1&loop=1&background=1&autopause=0"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
+
+        <!-- =================================================
+             OVERLAY
+        ================================================== -->
+
+        <div class="landing-overlay"></div>
+
+
+        <!-- =================================================
+             CENTER CONTENT
+        ================================================== -->
+
+        <div class="landing-content">
+
+
+            <!-- =============================================
+                 TITLE
+
+                 CHANGE THIS TEXT
+            ============================================== -->
+
+            <h1 class="landing-title">
+    BESPOKE VISUALS<br>
+    FOR HIGH<br>
+    VALUE INDUSTRIES
+            </h1>
+
+
+        </div>
+
+
+        <!-- =================================================
+             OVAL NAVIGATION
+        ================================================== -->
+
+        <a
+            href="https://www.r25media.com/home#case-study"
+            target="_top"
+            class="enlace-ovalo"
+            tabindex="0"
+            aria-label="Go to case studies"
+        >
+
+            <div class="ovalo">
+
+                <!-- Moving white dot -->
+                <div class="punto-central">></div>
+
+            </div>
+
+        </a>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         CUSTOM CURSOR
+    ====================================================== -->
+
+    <div id="dynamic-cursor">&gt;</div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            () => {
+
+                const customCursor =
+                    document.getElementById(
+                        'dynamic-cursor'
+                    );
+
+
+                /*
+                 * CUSTOM CURSOR
+                 *
+                 * Desktop only.
+                 */
+
+                if (customCursor) {
+
+                    window.addEventListener(
+                        'pointermove',
+                        (e) => {
+
+                            /*
+                             * Move cursor to mouse position.
+                             *
+                             * clientX/clientY are correct because
+                             * the cursor uses position: fixed.
+                             */
+
+                            customCursor.style.left =
+                                `${e.clientX}px`;
+
+                            customCursor.style.top =
+                                `${e.clientY}px`;
+
+
+                            /*
+                             * Hide custom cursor when hovering
+                             * over something clickable.
+                             */
+
+                            const clickable =
+                                e.target.closest(
+                                    'a:not(.logo-placeholder), button, input, select, textarea, label, [role="button"]'
+                                );
+
+
+                            if (clickable) {
+
+                                customCursor.style.transform =
+                                'translate(-50%, -50%) rotate(45deg) scale(0.15)';
+
+                                  customCursor.style.opacity =
+                                  '0';
+
+                                  return;
+}
+
+                            /*
+                             * Normal landing-page state:
+                             *
+                             * White ">" rotated -135 degrees.
+                             */
+
+                            customCursor.textContent =
+                                '>';
+
+                            customCursor.style.transform =
+                                 'translate(-50%, -50%) rotate(-135deg) scale(1)';
+
+                            customCursor.style.opacity =
+                                '1';
+
+                        }
+                    );
+
+
+                    /*
+                     * Hide cursor when mouse leaves
+                     * the browser/page area.
+                     */
+
+                    document.documentElement.addEventListener(
+                        'mouseleave',
+                        () => {
+
+                            customCursor.style.opacity =
+                                '0';
+
+                        }
+                    );
+
+
+                    /*
+                     * Show cursor again when entering
+                     * the page.
+                     */
+
+                    document.documentElement.addEventListener(
+                        'mouseenter',
+                        () => {
+
+                            customCursor.style.opacity =
+                                '1';
+
+                        }
+                    );
+
+                }
+/* =====================================================
+   GLASS MENU
+====================================================== */
+
+const menuToggle =
+    document.querySelector('.menu-toggle');
+
+const menuWindow =
+    document.querySelector('.menu-window');
+
+const menuClose =
+    document.querySelector('.menu-close');
+
+if (menuWindow) {
+    menuWindow.inert = true;
+}
+
+
+/* -----------------------------------------------------
+   OPEN / CLOSE MENU
+------------------------------------------------------ */
+
+function setMenu(open) {
+
+    if (!menuToggle || !menuWindow) {
+        return;
+    }
+
+
+    menuToggle.classList.toggle(
+        'is-open',
+        open
+    );
+
+    menuWindow.classList.toggle(
+        'is-open',
+        open
+    );
+
+
+    menuToggle.setAttribute(
+        'aria-expanded',
+        String(open)
+    );
+
+
+    menuWindow.setAttribute(
+        'aria-hidden',
+        String(!open)
+    );
+
+    // Prevent keyboard focus from entering a closed menu.
+    menuWindow.inert = !open;
+}
+
+
+/* -----------------------------------------------------
+   BURGER
+------------------------------------------------------ */
+
+if (menuToggle) {
+
+    menuToggle.addEventListener(
+        'click',
+        () => {
+
+            const isOpen =
+                menuWindow.classList.contains(
+                    'is-open'
+                );
+
+            setMenu(!isOpen);
+
+        }
+    );
+
+}
+
+
+/* -----------------------------------------------------
+   CLOSE BUTTON
+------------------------------------------------------ */
+
+if (menuClose) {
+
+    menuClose.addEventListener(
+        'click',
+        () => {
+
+            setMenu(false);
+
+        }
+    );
+
+}
+
+
+/* -----------------------------------------------------
+   ESC KEY
+------------------------------------------------------ */
+
+document.addEventListener(
+    'keydown',
+    (event) => {
+
+        if (
+            event.key === 'Escape' &&
+            menuWindow &&
+            menuWindow.classList.contains(
+                'is-open'
+            )
+        ) {
+
+            setMenu(false);
+
+        }
+
+    }
+);
+                
+                /*
+                 * BACKGROUND VIDEO
+                 *
+                 * Vimeo autoplay is controlled by the iframe URL.
+                 * Do not call .play() on the wrapper <div>; it is not
+                 * an HTMLVideoElement.
+                 */
+
+            }
+        );
+
+    </script>
+
+
+</body>
+</html>

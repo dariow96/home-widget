@@ -338,13 +338,13 @@
                 display: block !important;
 
                 transition:
-                    transform 0.1s ease-out,
-                    opacity 0.1s ease-out !important;
+                    transform 0.17s ease-out,
+                    opacity 0.17s ease-out !important;
             }
                 body.case-study-open #dynamic-cursor {
                   transition:
-                  transform 0.04s ease-out,
-                  opacity 0.04s ease-out !important;
+                  transform 0.05s ease-out,
+                  opacity 0.05s ease-out !important;
             }
         }
 
@@ -3123,6 +3123,7 @@ container.addEventListener(
 
 
               activeCard = card;
+              document.body.classList.add('case-study-open');
 
             }
           );
@@ -3149,6 +3150,7 @@ function closeCard() {
     container.classList.remove('card-expanded');
 
     activeCard = null;
+    document.body.classList.remove('case-study-open');
   
     card.setAttribute(
         'data-current-step',

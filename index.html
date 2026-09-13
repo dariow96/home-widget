@@ -2711,6 +2711,16 @@ document.addEventListener(
       const container =
         document.getElementById('grid-container');
 
+      function lockPageScroll() {
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+}
+
+      function unlockPageScroll() {
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+}
+
       const cards =
         document.querySelectorAll('.interactive-card');
 
@@ -3106,9 +3116,8 @@ container.addEventListener(
               );
 
 
-              card.classList.add(
-                'expanded'
-              );
+              card.classList.add('expanded');
+              lockPageScroll();
 
 
               activeCard = card;
@@ -3133,6 +3142,7 @@ function closeCard() {
 
 
     card.classList.remove('expanded');
+    unlockPageScroll();
 
 
     container.classList.remove('card-expanded');
@@ -3730,10 +3740,8 @@ container.addEventListener(
               );
 
 
-              card.classList.add(
-                'expanded'
-              );
-
+              card.classList.add('expanded');
+              lockPageScroll();
 
               activeCard = card;
 
@@ -3757,6 +3765,7 @@ function closeCard() {
 
 
     card.classList.remove('expanded');
+    unlockPageScroll();
 
 
     container.classList.remove('card-expanded');

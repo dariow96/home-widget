@@ -4022,16 +4022,9 @@ function closeCard() {
 #trusted-by .nav-zone.right{right:0}
 
 #trusted-by .nav-zone::after{
-  content:"";
-  position:absolute;
-  top:50%;
-  width:42px;
-  height:42px;
-  border-top:2px solid rgba(255,255,255,.75);
-  border-left:2px solid rgba(255,255,255,.75);
-  opacity:0;
-  transition:opacity .2s ease, transform .2s ease;
+  display:none;
 }
+  
 #trusted-by .nav-zone.left::after{
   left:28px;
   transform:translateY(-50%) rotate(-45deg);

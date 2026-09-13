@@ -3105,6 +3105,9 @@ container.addEventListener(
                 'card-expanded'
               );
 
+              document.body.style.overflow = 'hidden';
+              document.documentElement.style.overflow = 'hidden';
+
 
               card.classList.add(
                 'expanded'
@@ -3136,6 +3139,9 @@ function closeCard() {
 
 
     container.classList.remove('card-expanded');
+
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
 
     activeCard = null;
   

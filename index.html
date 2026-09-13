@@ -2002,24 +2002,27 @@ body {
 
                 if (customCursor) {
 
-                    window.addEventListener(
-                        'pointermove',
-                        (e) => {
+                        let cursorTargetX = window.innerWidth / 2;
+                        let cursorTargetY = window.innerHeight / 2;
+                        let cursorCurrentX = cursorTargetX;
+                        let cursorCurrentY = cursorTargetY;
 
-                            /*
-                             * Move cursor to mouse position.
-                             *
-                             * clientX/clientY are correct because
-                             * the cursor uses position: fixed.
-                             */
+                        window.addEventListener('pointermove', (e) => {
+                          cursorTargetX = e.clientX;
+                          cursorTargetY = e.clientY;
+    });
 
-                            customCursor.style.left =
-                                `${e.clientX}px`;
+                        function updateDynamicCursorPosition() {
+                          cursorCurrentX += (cursorTargetX - cursorCurrentX) * 0.18;
+                          cursorCurrentY += (cursorTargetY - cursorCurrentY) * 0.18;
+  
+                          customCursor.style.left = `${cursorCurrentX}px`;
+                          customCursor.style.top = `${cursorCurrentY}px`;
 
-                            customCursor.style.top =
-                                `${e.clientY}px`;
+                        requestAnimationFrame(updateDynamicCursorPosition);
+    }
 
-
+                        requestAnimationFrame(updateDynamicCursorPosition);
                             /*
                              * Hide custom cursor when hovering
                              * over something clickable.
@@ -2759,16 +2762,6 @@ container.addEventListener(
 
         window.addEventListener('pointermove', (e) => {
 
-          /* -------------------------------------------------
-             POSITION CURSOR
-             ------------------------------------------------- */
-
-          customCursor.style.left =
-            `${e.clientX}px`;
-
-          customCursor.style.top =
-            `${e.clientY}px`;
-
 
           /* -------------------------------------------------
              HIDE / SHRINK OVER CLICKABLE ELEMENTS
@@ -3393,17 +3386,6 @@ container.addEventListener(
       if (customCursor) {
 
         window.addEventListener('pointermove', (e) => {
-
-          /* -------------------------------------------------
-             POSITION CURSOR
-             ------------------------------------------------- */
-
-          customCursor.style.left =
-            `${e.clientX}px`;
-
-          customCursor.style.top =
-            `${e.clientY}px`;
-
 
           /* -------------------------------------------------
              HIDE / SHRINK OVER CLICKABLE ELEMENTS

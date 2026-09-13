@@ -3400,6 +3400,42 @@ container.addEventListener(
 
           const overLogo = e.target.closest('.logo-placeholder');
 
+          const customCursor =
+           document.getElementById('dynamic-cursor');
+
+          if (customCursor) {
+
+  const overLogo = e.target.closest('.logo-placeholder');
+
+  // ADD THIS BLOCK HERE
+  const trustedCarousel = e.target.closest('#trusted-by .carousel');
+
+  if (trustedCarousel) {
+    const rect = trustedCarousel.getBoundingClientRect();
+    const relativeX = e.clientX - rect.left;
+
+    const centerStart = rect.width * 0.40;
+    const centerEnd = rect.width * 0.60;
+
+    if (relativeX >= centerStart && relativeX <= centerEnd) {
+      customCursor.textContent = '>';
+      customCursor.style.transform =
+        'translate(-50%, -50%) rotate(-135deg) scale(1)';
+    } else if (relativeX < centerStart) {
+      customCursor.textContent = '<';
+      customCursor.style.transform =
+        'translate(-50%, -50%) rotate(0deg) scale(1)';
+    } else {
+      customCursor.textContent = '>';
+      customCursor.style.transform =
+        'translate(-50%, -50%) rotate(0deg) scale(1)';
+    }
+
+    customCursor.style.opacity = '1';
+    return;
+  }
+
+          
           const clickable =
             !overLogo &&
             e.target.closest(

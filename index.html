@@ -2002,27 +2002,6 @@ body {
 
                 if (customCursor) {
 
-                        let cursorTargetX = window.innerWidth / 2;
-                        let cursorTargetY = window.innerHeight / 2;
-                        let cursorCurrentX = cursorTargetX;
-                        let cursorCurrentY = cursorTargetY;
-
-                        window.addEventListener('pointermove', (e) => {
-                          cursorTargetX = e.clientX;
-                          cursorTargetY = e.clientY;
-    });
-
-                        function updateDynamicCursorPosition() {
-                          cursorCurrentX += (cursorTargetX - cursorCurrentX) * 0.18;
-                          cursorCurrentY += (cursorTargetY - cursorCurrentY) * 0.18;
-  
-                          customCursor.style.left = `${cursorCurrentX}px`;
-                          customCursor.style.top = `${cursorCurrentY}px`;
-
-                        requestAnimationFrame(updateDynamicCursorPosition);
-    }
-
-                        requestAnimationFrame(updateDynamicCursorPosition);
                             /*
                              * Hide custom cursor when hovering
                              * over something clickable.
@@ -2759,6 +2738,28 @@ container.addEventListener(
          ===================================================== */
 
       if (customCursor) {
+
+        let cursorTargetX = window.innerWidth / 2;
+    let cursorTargetY = window.innerHeight / 2;
+    let cursorCurrentX = cursorTargetX;
+    let cursorCurrentY = cursorTargetY;
+
+    window.addEventListener('pointermove', (e) => {
+        cursorTargetX = e.clientX;
+        cursorTargetY = e.clientY;
+    });
+
+    function updateDynamicCursorPosition() {
+        cursorCurrentX += (cursorTargetX - cursorCurrentX) * 0.18;
+        cursorCurrentY += (cursorTargetY - cursorCurrentY) * 0.18;
+
+        customCursor.style.left = `${cursorCurrentX}px`;
+        customCursor.style.top = `${cursorCurrentY}px`;
+
+        requestAnimationFrame(updateDynamicCursorPosition);
+    }
+
+    requestAnimationFrame(updateDynamicCursorPosition);
 
         window.addEventListener('pointermove', (e) => {
 

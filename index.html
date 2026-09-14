@@ -2106,8 +2106,326 @@ body {
   }
 }
 </style>
+
+<style id="mobile-landscape-final">
+/* =========================================================
+   MOBILE LANDSCAPE FINAL TUNING
+   Only applies to phones/tablets in landscape (<=768px).
+   Desktop styles are untouched.
+   ========================================================= */
+@media (max-width: 768px) and (orientation: landscape) {
+
+  /* ---------- HOME / HERO ---------- */
+  #home-widget {
+    width: 100%;
+    height: 100svh !important;
+    min-height: 0 !important;
+    max-height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  #home-widget .landing-content {
+    height: 100%;
+    min-height: 0;
+    padding: 0 5vw 88px;
+    justify-content: center;
+  }
+
+  #home-widget .landing-title {
+    max-width: 92vw;
+    font-size: clamp(42px, 7.2vw, 70px) !important;
+    line-height: .98 !important;
+    letter-spacing: -.025em;
+    margin: 0;
+    transform: translateY(-34px);
+  }
+
+  /* Keep the scroll oval completely independent from the headline. */
+  #home-widget > .enlace-ovalo {
+    top: auto !important;
+    bottom: 18px !important;
+    transform: translateX(-50%) !important;
+    z-index: 20;
+  }
+
+  #home-widget > .enlace-ovalo .ovalo {
+    width: 25px;
+    height: 52px;
+    border-width: 4px;
+  }
+
+  /* ---------- DISPLAY / CASE-STUDY CARDS ---------- */
+  .display-widget-section,
+  .display-widget-section .full-bleed-grid-container {
+    width: 100% !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    max-height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  .display-widget-section .full-bleed-grid-container {
+    flex-direction: row !important;
+  }
+
+  .display-widget-section .interactive-card {
+    width: 33.333333% !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    max-height: 100svh !important;
+    flex: 1 1 33.333333% !important;
+    padding: 18px 10px;
+  }
+
+  .display-widget-section .card-content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .display-widget-section .card-title {
+    font-size: clamp(34px, 4.1vw, 46px) !important;
+    line-height: .98 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .display-widget-section .case-study-btn {
+    font-size: 14px !important;
+    letter-spacing: 2px !important;
+    padding: 11px 17px !important;
+    min-height: 42px !important;
+  }
+
+  /* ---------- TRUSTED BY ---------- */
+  #trusted-by {
+    width: 100% !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    max-height: 100svh !important;
+    overflow: hidden !important;
+    padding: 28px 0 20px !important;
+    justify-content: flex-start;
+  }
+
+  #trusted-by .trusted-title {
+    padding: 0 18px;
+    font-size: clamp(40px, 5.6vw, 62px) !important;
+    line-height: .98 !important;
+  }
+
+  #trusted-by .trusted-subtitle {
+    margin-top: 8px !important;
+    padding: 0 18px;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+    letter-spacing: 1.5px !important;
+    white-space: nowrap;
+  }
+
+  #trusted-by .carousel {
+    width: 100%;
+    height: 142px !important;
+    flex: 0 0 142px;
+    margin-top: 12px !important;
+  }
+
+  #trusted-by .track {
+    gap: 28px !important;
+  }
+
+  #trusted-by .logo {
+    min-width: 145px !important;
+    height: 82px !important;
+    transform: scale(.88);
+  }
+
+  #trusted-by .logo.featured {
+    transform: scale(.98);
+  }
+
+  #trusted-by .nestle strong { font-size: 34px; }
+  #trusted-by .disney { font-size: 39px; }
+  #trusted-by .netflix { font-size: 36px; }
+  #trusted-by .mikros { font-size: 36px; }
+  #trusted-by .panot { font-size: 39px; }
+
+  #trusted-by .our-work {
+    width: min(54vw, 520px) !important;
+    max-width: 520px !important;
+    min-width: 0 !important;
+    margin: 8px auto 0 !important;
+    padding: 13px 24px !important;
+    font-size: .88rem !important;
+    letter-spacing: 2.5px !important;
+    flex: 0 0 auto;
+  }
+}
+</style>
+
+<style id="r25-entry-preloader">
+/* =========================================================
+   R25 ENTRY EXPERIENCE
+   Desktop: logo GIF preloader on arrival.
+   Mobile portrait: rotate prompt first; once landscape,
+   logo GIF preloader appears and then fades away.
+   ========================================================= */
+#r25-entry-screen,
+#r25-rotate-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  width: 100vw;
+  height: 100dvh;
+  background: #050505;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity .65s cubic-bezier(.22,1,.36,1), visibility .65s;
+}
+
+#r25-entry-screen.r25-hidden,
+#r25-rotate-screen.r25-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#r25-entry-screen .r25-entry-logo {
+  display: block;
+  width: min(280px, 42vw);
+  height: auto;
+  max-height: 32vh;
+  object-fit: contain;
+  transform: scale(1.4);
+  transform-origin: center;
+}
+
+/* Portrait instruction — intentionally simple and premium. */
+#r25-rotate-screen {
+  display: none;
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
+  padding: 32px;
+}
+
+.r25-rotate-icon {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto;
+  animation: r25-rotate-pulse 2.2s ease-in-out infinite;
+}
+
+.r25-phone {
+  position: absolute;
+  left: 24px;
+  top: 8px;
+  width: 28px;
+  height: 52px;
+  border: 3px solid #fff;
+  border-radius: 8px;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.r25-phone::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateX(-50%);
+}
+
+.r25-rotate-arrow {
+  position: absolute;
+  inset: 0;
+  border: 3px solid transparent;
+  border-top-color: #fff;
+  border-right-color: #fff;
+  border-radius: 50%;
+  transform: rotate(-35deg);
+}
+
+.r25-rotate-arrow::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: 9px;
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  transform: rotate(25deg);
+}
+
+.r25-rotate-copy {
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+
+.r25-rotate-subcopy {
+  margin-top: -14px;
+  color: rgba(255,255,255,.52);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+@keyframes r25-rotate-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: .82; }
+  50% { transform: scale(1.06) rotate(4deg); opacity: 1; }
+}
+
+/* Portrait phones see only the rotate instruction. */
+@media (max-width: 768px) and (orientation: portrait) {
+  #r25-entry-screen { display: none; }
+  #r25-rotate-screen { display: flex; }
+}
+
+/* Landscape phones: skip the rotate instruction and show the logo. */
+@media (max-width: 768px) and (orientation: landscape) {
+  #r25-entry-screen { display: flex; }
+  #r25-rotate-screen { display: none; }
+  #r25-entry-screen .r25-entry-logo {
+    width: min(230px, 30vw);
+    max-height: 38vh;
+  }
+}
+</style>
+
 </head>
 <body>
+
+<!-- R25 entry experience -->
+<div id="r25-rotate-screen" aria-hidden="true">
+  <div class="r25-rotate-icon" aria-hidden="true">
+    <div class="r25-phone"></div>
+    <div class="r25-rotate-arrow"></div>
+  </div>
+  <div class="r25-rotate-copy">Rotate your phone</div>
+  <div class="r25-rotate-subcopy">Landscape mode recommended</div>
+</div>
+
+<div id="r25-entry-screen" aria-hidden="true">
+  <img class="r25-entry-logo"
+       src="https://ik.imagekit.io/any3bivim/Image/LogoGIF.gif?updatedAt=1789339748326"
+       alt="R25 Media">
+</div>
+
+
+
 
 <!-- =====================================================
          LANDING WIDGET
@@ -2291,9 +2609,9 @@ body {
             ============================================== -->
 
             <h1 class="landing-title">
-    PREMIUM ANIMATION<br>
-    SERVICES FOR<br>
-    BESPOKE INDUSTRIES
+    BESPOKE VISUALS<br>
+    FOR HIGH<br>
+    VALUE INDUSTRIES
             </h1>
 
 
@@ -4020,6 +4338,165 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {passive: true});
   });
 });
+</script>
+
+<style id="mobile-landscape-user-final-tuning">
+/* Final landscape refinements — desktop remains untouched. */
+@media (max-width: 768px) and (orientation: landscape) {
+
+  /* MOBILE LANDSCAPE: every major section occupies exactly one dynamic viewport.
+     dvh follows the visible viewport as Chrome's bars collapse/expand. */
+  #home-widget,
+  .display-widget-section,
+  #trusted-by {
+    width: 100% !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    flex: 0 0 100dvh !important;
+  }
+
+  /* HOME: keep the headline in the intended visual position. */
+  #home-widget .landing-title {
+    transform: translateY(30px) !important;
+  }
+
+  /* DISPLAY: keep the three cards in one landscape viewport. */
+  .display-widget-section .full-bleed-grid-container {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    flex-direction: row !important;
+  }
+
+  .display-widget-section .interactive-card {
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    flex: 1 1 33.333333% !important;
+  }
+
+  .display-widget-section .card-title {
+    font-size: clamp(29px, 3.35vw, 38px) !important;
+    line-height: 1.02 !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* TRUSTED BY: also stays exactly one landscape viewport. */
+  #trusted-by {
+    padding-top: 28px !important;
+    padding-bottom: 20px !important;
+  }
+}
+</style>
+
+
+
+<style id="mobile-menu-social-landscape-fix">
+/* Mobile landscape: keep social links in a vertical rail at the bottom-right,
+   directly beneath the close button, so browser chrome cannot push them over nav. */
+@media (max-width: 768px) and (orientation: landscape) {
+  .menu-window .menu-social {
+    top: auto !important;
+    right: max(16px, env(safe-area-inset-right)) !important;
+    bottom: max(18px, env(safe-area-inset-bottom)) !important;
+    left: auto !important;
+    width: 44px !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 8px !important;
+    z-index: 102 !important;
+  }
+
+  .menu-window .menu-social a {
+    width: 38px !important;
+    height: 38px !important;
+    flex: 0 0 38px !important;
+  }
+
+  .menu-window .menu-social svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+</style>
+
+<script id="r25-entry-preloader-script">
+(function () {
+  const entry = document.getElementById('r25-entry-screen');
+  const rotate = document.getElementById('r25-rotate-screen');
+  if (!entry || !rotate) return;
+
+  const isPhone = () => window.matchMedia('(max-width: 768px)').matches;
+  const isPortrait = () => window.matchMedia('(orientation: portrait)').matches;
+  const startTime = performance.now();
+  let finished = false;
+  let timer = null;
+
+  function hideEntry() {
+    if (finished) return;
+    finished = true;
+    entry.classList.add('r25-hidden');
+    document.documentElement.classList.remove('r25-entry-active');
+    document.body.classList.remove('r25-entry-active');
+
+    /* Phone landscape: a subtle scroll nudge timed to the preloader fade.
+       This may encourage Chrome to collapse its toolbar; browsers can ignore
+       programmatic toolbar changes. */
+    if (window.matchMedia('(max-width: 768px) and (orientation: landscape)').matches) {
+      const start = window.scrollY || window.pageYOffset || 0;
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      if (maxScroll > start) {
+        const target = Math.min(start + 40, maxScroll);
+        window.scrollTo({ top: target, behavior: 'smooth' });
+        window.setTimeout(function () {
+          window.scrollTo({ top: start, behavior: 'smooth' });
+        }, 360);
+      }
+    }
+  }
+
+  function showEntry() {
+    if (finished) return;
+    rotate.classList.add('r25-hidden');
+    entry.classList.remove('r25-hidden');
+
+    const elapsed = performance.now() - startTime;
+    const minimumDisplay = 1500;
+    const wait = Math.max(0, minimumDisplay - elapsed);
+
+    clearTimeout(timer);
+    timer = setTimeout(hideEntry, wait + 850);
+  }
+
+  function handleOrientation() {
+    if (finished) return;
+
+    if (isPhone() && isPortrait()) {
+      entry.classList.add('r25-hidden');
+      rotate.classList.remove('r25-hidden');
+    } else {
+      showEntry();
+    }
+  }
+
+  /* Desktop and landscape mobile: logo first. Portrait mobile: rotate first. */
+  handleOrientation();
+
+  window.addEventListener('orientationchange', handleOrientation, { passive: true });
+  window.addEventListener('resize', handleOrientation, { passive: true });
+
+  /* Don't let the preloader disappear before the page itself has loaded. */
+  window.addEventListener('load', function () {
+    if (!isPhone() || !isPortrait()) showEntry();
+  }, { once: true });
+})();
 </script>
 
 </body>
